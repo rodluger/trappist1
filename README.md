@@ -29,11 +29,11 @@ Folded long cadence plots for each of the seven planets transiting TRAPPIST-1:
 ### trappist1.ShortCadence()
 The long cadence data folded on the period of planet <b>h</b>:
 <p align="center">
-  <img src="output/sc_folded.png" width="50%"/>
+  <img src="output/sc_folded.png" width="80%"/>
 </p>
 Each of the individual four transits of planet <b>h</b>, with a simultaneous transit of <b>b</b> and a near-simultaneous flare removed in the bottom panels:
 <p align="center">
-  <img src="output/sc_transits.png" width="50%"/>
+  <img src="output/sc_transits.png" width="60%"/>
 </p>
 A closer look at what's going on during the third transit:
 <p align="center">
