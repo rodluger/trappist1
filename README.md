@@ -15,7 +15,6 @@ In order to run the scripts and interact with the light curves in this repositor
 If you alread have <b>EVEREST</b> installed, please upgrade it:
 <br/>
 <pre><code>pip install everest-pipeline --upgrade</code></pre>
-<br/>
 For more information on installing and using <b>EVEREST</b>, check out the [project github page](https://github.com/rodluger/everest). 
 
 The methods in [trappist1.py](trappist1.py) allow users to plot and interact with the <b>EVEREST</b> light curve for TRAPPIST-1, as well as to reproduce several of the figures in the <a href="#">paper</a>.
@@ -47,11 +46,11 @@ A closer look at what's going on during the fourth transit, with a flare fit bas
 ## trappist1.DeltaChisq()
 The delta-chi squared long cadence plot (top) and the delta-chi squared conditioned on the true depth of planet <b>h</b> (bottom):
 <p align="center">
-  <img src="output/deltachisq.png" width="50%"/>
+  <img src="output/deltachisq.png" width="100%"/>
 </p>
 
 ## trappist1.PowerSpectrum()
 The delta-chi squared long cadence power spectrum, where the period of <b>h</b> and its aliases are clearly visible:
 <p align="center">
-  <img src="output/powerspec.png" width="50%"/>
+  <img src="output/powerspec.png" width="100%"/>
 </p>
