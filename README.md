@@ -7,6 +7,8 @@
   <a href="https://doi.org/10.5281/zenodo.376863"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.376863.svg"/></a>
 </p>
 
+## What's In Here
+This repository contains the <b>EVEREST</b> long cadence light curve ([FITS](output/nPLDTrappist.fits) | [PDF](output/nPLDTrappist.pdf)), segments of the short cadence light curve in the vicinity of each transit of planet <b>h</b> ([FITS1](output/nPLDTrappisth1.sc.fits) | [PDF1](output/nPLDTrappisth1.sc.pdf) | [FITS2](output/nPLDTrappisth2.sc.fits) | [PDF2](output/nPLDTrappisth2.sc.pdf) | [FITS3](output/nPLDTrappisth3.sc.fits) | [PDF3](output/nPLDTrappisth3.sc.pdf) | [FITS4](output/nPLDTrappisth4.sc.fits) | [PDF4](output/nPLDTrappisth4.sc.pdf)), and all the code necessary to reproduce and analyze these light curves and plot the figures in our [Nature Astronomy paper](#).
 
 ## Installation
 In order to run the scripts and interact with the light curves in this repository, you will need to install the latest <b>EVEREST</b> release (>=2.0.7):
@@ -14,7 +16,7 @@ In order to run the scripts and interact with the light curves in this repositor
 If you alread have <b>EVEREST</b> installed, please upgrade it:
 <pre><code>pip install everest-pipeline --upgrade</code></pre>
 For more information on installing and using <b>EVEREST</b>, check out the [project github page](https://github.com/rodluger/everest).
-Next, download the raw TPF data for TRAPPIST-1 and its neighbors from [this Zenodo link](https://doi.org/10.5281/zenodo.376863) and place them in the (data folder)[data/].
+Next, download the raw TPF data for TRAPPIST-1 and its neighbors from [this Zenodo link](https://doi.org/10.5281/zenodo.376863) and place them in the [data folder](data/).
 
 ## The Code
 The methods in [trappist1.py](trappist1.py) allow users to plot and interact with the <b>EVEREST</b> light curve for TRAPPIST-1, as well as to reproduce several of the figures in the <a href="#">paper</a>.
