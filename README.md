@@ -61,3 +61,10 @@ The delta-chi squared long cadence power spectrum, where the period of <b>h</b> 
 <p align="center">
   <img src="output/powerspec.png" width="100%"/>
 </p>
+
+## Attribution
+If you make use of the light curves, code, or images in this repository, please cite this repository and the following papers:
+
+[Luger et al. (2017)](#)
+[Luger et al. (2017)](http://adsabs.harvard.edu/abs/2017arXiv170205488L)
+[Luger et al. (2016)](http://adsabs.harvard.edu/abs/2016AJ....152..100L)
