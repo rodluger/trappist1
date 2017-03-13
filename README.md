@@ -1,5 +1,5 @@
 <p align="center">
-  <img width = "300" src="http://staff.washington.edu/rodluger/everest/_images/everest.png"/>
+  <img width = "300" src="https://github.com/rodluger/trappist1/blob/master/data/everest_trappist.png"/>
 </p>
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/arXiv-XXXX.YYYYY-blue.svg?style=flat"/></a>
