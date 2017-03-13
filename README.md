@@ -10,14 +10,13 @@
 
 ## Installation
 In order to run the scripts and interact with the light curves in this repository, you will need to install the latest <b>EVEREST</b> release (>=2.0.7):
-<br/>
 <pre><code>pip install everest-pipeline</code></pre>
 If you alread have <b>EVEREST</b> installed, please upgrade it:
-<br/>
 <pre><code>pip install everest-pipeline --upgrade</code></pre>
-For more information on installing and using <b>EVEREST</b>, check out the [project github page](https://github.com/rodluger/everest). 
+For more information on installing and using <b>EVEREST</b>, check out the [project github page](https://github.com/rodluger/everest).
+Next, download the raw TPF data for TRAPPIST-1 and its neighbors from [this Zenodo link](https://doi.org/10.5281/zenodo.376863) and place them in the (data folder)[data/].
 
-## trappist1.py
+## The Code
 The methods in [trappist1.py](trappist1.py) allow users to plot and interact with the <b>EVEREST</b> light curve for TRAPPIST-1, as well as to reproduce several of the figures in the <a href="#">paper</a>.
 
 ### trappist1.PlotFolded()
