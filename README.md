@@ -17,15 +17,16 @@ If you alread have <b>EVEREST</b> installed, please upgrade it:
 <pre><code>pip install everest-pipeline --upgrade</code></pre>
 For more information on installing and using <b>EVEREST</b>, check out the [project github page](https://github.com/rodluger/everest). 
 
+## trappist1.py
 The methods in [trappist1.py](trappist1.py) allow users to plot and interact with the <b>EVEREST</b> light curve for TRAPPIST-1, as well as to reproduce several of the figures in the <a href="#">paper</a>.
 
-## trappist1.PlotFolded()
+### trappist1.PlotFolded()
 Folded long cadence plots for each of the seven planets transiting TRAPPIST-1:
 <p align="center">
   <img src="output/folded.png" width="50%"/>
 </p>
 
-## trappist1.ShortCadence()
+### trappist1.ShortCadence()
 The long cadence data folded on the period of planet <b>h</b>:
 <p align="center">
   <img src="output/sc_folded.png" width="50%"/>
@@ -43,13 +44,13 @@ A closer look at what's going on during the fourth transit, with a flare fit bas
   <img src="output/transit_4.png" width="50%"/>
 </p>
 
-## trappist1.DeltaChisq()
+### trappist1.DeltaChisq()
 The delta-chi squared long cadence plot (top) and the delta-chi squared conditioned on the true depth of planet <b>h</b> (bottom):
 <p align="center">
   <img src="output/deltachisq.png" width="100%"/>
 </p>
 
-## trappist1.PowerSpectrum()
+### trappist1.PowerSpectrum()
 The delta-chi squared long cadence power spectrum, where the period of <b>h</b> and its aliases are clearly visible:
 <p align="center">
   <img src="output/powerspec.png" width="100%"/>
