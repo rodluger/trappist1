@@ -11,9 +11,10 @@ several of the figures in the paper.
 
 from __future__ import division, print_function, absolute_import, unicode_literals
 from transit import Trappist1
-from data import LongCadenceLightcurve, ShortCadenceLightcurves
+from data import LongCadenceLightcurve, ShortCadenceLightcurves, TRAPPIST_OUT, TRAPPIST_EVEREST_DAT
 from flare import flare_model
 import numpy as np
+import shutil, os
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as pl
 from matplotlib.ticker import MaxNLocator
@@ -440,7 +441,18 @@ def ShortCadence():
   pl.show()
 
 if __name__ == '__main__':
-    
+  
+  # Create the TRAPPIST1 folder
+  if not os.path.exists(TRAPPIST_EVEREST_DAT):
+    os.makedirs(TRAPPIST_EVEREST_DAT)
+  fitsfiles = ['nPLDTrappist.fits', 'nPLDTrappisth1.sc.fits', 'nPLDTrappisth2.sc.fits', 
+               'nPLDTrappisth3.sc.fits', 'nPLDTrappisth4.sc.fits']
+  
+  # NOTE: Comment these lines if you want to do the de-trending yourself!
+  for file in fitsfiles:
+    if not os.path.exists(file):
+      shutil.copy(os.path.join(TRAPPIST_OUT, file), TRAPPIST_EVEREST_DAT)
+  
   # Folded light curve for all planets
   PlotFolded()
   
