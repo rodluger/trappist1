@@ -450,7 +450,7 @@ if __name__ == '__main__':
   
   # NOTE: Comment these lines if you want to do the de-trending yourself!
   for file in fitsfiles:
-    if not os.path.exists(file):
+    if not os.path.exists(os.path.join(TRAPPIST_EVEREST_DAT, file)):
       shutil.copy(os.path.join(TRAPPIST_OUT, file), TRAPPIST_EVEREST_DAT)
   
   # Folded light curve for all planets
