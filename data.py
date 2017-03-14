@@ -536,46 +536,50 @@ def Publish(star, cadence = 'lc'):
   os.remove(os.path.join(star.dir, fitsfile))
   return filename
 
-def LongCadenceLightcurve(oiter = 20, osigma = 3, pad = 2.5, debug = True, mask_planets = True, **kwargs):
+def LongCadenceLightcurve(oiter = 20, osigma = 3, pad = 2.5, debug = True, mask_planets = True, clobber = False, **kwargs):
   '''
   The nPLD model with b-h transits masked prior to cross-validation.
   
   '''
   
-  # Get neighbors
-  neighbors_data = []
-  for star in LONGCAD_NEIGHBORS:
-    neighbors_data.append(GetData(star))
+  # Check if we already have a fits file
+  fitsfile = os.path.join(TRAPPIST_EVEREST_DAT, 'nPLDTrappist.fits')
+  if clobber or not os.path.exists(fitsfile):
   
-  # Get self
-  data = GetData(TRAPPIST_EPIC)
+    # Get neighbors
+    neighbors_data = []
+    for star in LONGCAD_NEIGHBORS:
+      neighbors_data.append(GetData(star))
   
-  # Mask the transits
-  if mask_planets:
-    T1 = Trappist1()
-    transitmask = T1.transit_inds(data.time, pad = pad)
-  else:
-    transitmask = np.array([], dtype = int)
+    # Get self
+    data = GetData(TRAPPIST_EPIC)
+  
+    # Mask the transits
+    if mask_planets:
+      T1 = Trappist1()
+      transitmask = T1.transit_inds(data.time, pad = pad)
+    else:
+      transitmask = np.array([], dtype = int)
     
-  kwargs.update(dict(neighbors = LONGCAD_NEIGHBORS, 
-                     neighbors_data = neighbors_data, 
-                     breakpoints = LONGCAD_BREAKPOINTS,
-                     oiter = oiter,
-                     osigma = osigma,
-                     debug = debug,
-                     season = 12,
-                     data = data))
+    kwargs.update(dict(neighbors = LONGCAD_NEIGHBORS, 
+                       neighbors_data = neighbors_data, 
+                       breakpoints = LONGCAD_BREAKPOINTS,
+                       oiter = oiter,
+                       osigma = osigma,
+                       debug = debug,
+                       season = 12,
+                       data = data))
   
-  class nPLDTrappist(everest.nPLD):
-    def load_tpf(self):
-      super(nPLDTrappist, self).load_tpf()
-      self.transitmask = transitmask
+    class nPLDTrappist(everest.nPLD):
+      def load_tpf(self):
+        super(nPLDTrappist, self).load_tpf()
+        self.transitmask = transitmask
   
-  # Run!
-  model = nPLDTrappist(TRAPPIST_EPIC, **kwargs)
+    # Run!
+    model = nPLDTrappist(TRAPPIST_EPIC, **kwargs)
   
-  # Generate the FITS file
-  fitsfile = Publish(model)
+    # Generate the FITS file
+    fitsfile = Publish(model)
   
   # Generate an emulated `Everest` instance
   star = Everest(fitsfile, ID = TRAPPIST_EPIC)
