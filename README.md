@@ -7,7 +7,7 @@
   <a href="https://doi.org/10.5281/zenodo.376863"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.376863.svg"/></a>
 </p>
 
-<b>[3/15/2017]:</b> *Several bugs were recently fixed. Please pull again and upgrade your everest installation.*
+<b>[3/15/2017]:</b> *Several bugs were recently fixed. Please pull again and upgrade your everest installation.*<br>*Big thanks to Hans Martin Schwengeler.*
 
 ## Introduction
 The planet-hosting star [TRAPPIST-1](https://en.wikipedia.org/wiki/TRAPPIST-1) was recently [observed](https://archive.stsci.edu/k2/trappist1/) with the [*K2* spacecraft](https://keplerscience.arc.nasa.gov/). Recently, [seven transiting planets](http://www.nature.com/nature/journal/v542/n7642/full/nature21360.html) were found around this star, but the outermost of these, TRAPPIST-1 **h**, was only seen in transit once, so its period was not known. While the *K2* observations had the potential to find more transits of **h** (thereby constraining its orbit), there are two major issues difficulting this measurement. First, since TRAPPIST-1 is an [ultracool dwarf](https://en.wikipedia.org/wiki/Ultra-cool_dwarf), it is extremely dim in the band at which *K2* observes. Second, because of its inability to point precisly, *K2* introduces substantial [instrumental noise](https://keplerscience.arc.nasa.gov/k2-observing.html#campaigns) into its light curves, swamping out the small transit signals.
