@@ -48,7 +48,6 @@ LONGCAD_NEIGHBORS = [246165150, 246211745, 246171759, 246127507, 246228828, 2063
 
 # Some important constants
 LONGCAD_BREAKPOINTS = [1173, 2320]
-SHORTCAD_BREAKPOINTS = np.array(np.linspace(0, 107970, 31)[1:-1], dtype = int) # NOT YET OPTIMIZED!
 
 # The data directory
 TRAPPIST_EVEREST_DAT = os.path.join(EVEREST_DAT, 'k2', 'c12', ('%09d' % TRAPPIST_EPIC)[:4] + '00000', ('%09d' % TRAPPIST_EPIC)[4:])
