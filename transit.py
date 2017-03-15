@@ -8,7 +8,7 @@ The TRAPPIST-1 transit model class.
 
 '''
 
-from __future__ import division, print_function, absolute_import, unicode_literals
+from __future__ import division, print_function, absolute_import #, unicode_literals
 import numpy as np
 import pysyzygy as ps
 import everest
@@ -117,10 +117,15 @@ class Trappist1(object):
     self.u1 = 1.0181
     self.u2 = -0.0404
       
-  def transit_inds(self, time, planets = ['b', 'c', 'd', 'e', 'f', 'g', 'h'], pad = 2.5):
+  def transit_inds(self, time, planets = None, pad = 2.5):
     '''
     
     '''
+    
+    if planets is None:
+      planets = self.planets
+    elif type(planets) is str:
+      planets = [planets]
     
     inds = []
     for planet in planets:
@@ -142,13 +147,15 @@ class Trappist1(object):
 
     return np.array(sorted(list(set(inds))), dtype = int)
 
-  def flux(self, time, planets = ['b', 'c', 'd', 'e', 'f', 'g', 'h'], cadence = 'lc'):
+  def flux(self, time, planets = None, cadence = 'lc'):
     '''
     
     '''
     
     # Ensure it's a list
-    if type(planets) is str:
+    if planets is None:
+      planets = self.planets
+    elif type(planets) is str:
       planets = [planets]
     
     # Compute flux for each planet
@@ -173,7 +180,7 @@ class Trappist1(object):
     '''
     
     res = [i for i in range(7)]
-    for i, planet in enumerate(['b', 'c', 'd', 'e', 'f', 'g', 'h']):
+    for i, planet in enumerate(self.planets):
       res[i] = everest.TransitModel(planet, per = self.period[planet], b = self.b[planet], RpRs = self.RpRs[planet], t0 = self.t0[planet], 
                                     rhos = self.rhos, ecc = self.ecc[planet], w = self.w[planet] * np.pi / 180., u1 = self.u1, 
                                     u2 = self.u2, times = self.times[planet], sig_RpRs = self.sig_RpRs[planet])

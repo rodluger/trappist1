@@ -8,7 +8,7 @@ The main interface to the K2 raw cadence data.
 
 '''
 
-from __future__ import division, print_function, absolute_import, unicode_literals
+from __future__ import division, print_function, absolute_import #, unicode_literals
 from transit import Trappist1
 import subprocess, os, shutil
 import re

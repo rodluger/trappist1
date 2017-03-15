@@ -9,7 +9,7 @@ several of the figures in the paper.
 
 '''
 
-from __future__ import division, print_function, absolute_import, unicode_literals
+from __future__ import division, print_function, absolute_import #, unicode_literals
 from transit import Trappist1
 from data import LongCadenceLightcurve, ShortCadenceLightcurves, TRAPPIST_OUT, TRAPPIST_EVEREST_DAT
 from flare import flare_model
@@ -100,7 +100,7 @@ def DeltaChisq():
   ax[1].plot(time + BJDOFF, delchisqcond, lw = 1, color = 'k', alpha = 0.65)
   ax[0].set_ylabel(r'$\Delta \chi^2$', fontsize = 18, labelpad = 12)
   ax[1].set_ylabel(r'$\Delta \chi^2_\mathrm{cond}$', fontsize = 18)
-  ax[1].set_xlabel('Barycentric Julian Date − 2,457,700 [day]', fontsize = 18)
+  ax[1].set_xlabel("BJD - 2,457,700 [day]", fontsize = 18)
   ax[0].set_xlim(time[0] + BJDOFF, time[-1] + BJDOFF)
   ax[1].set_xlim(time[0] + BJDOFF, time[-1] + BJDOFF)
   for n in range(5,9):
@@ -278,7 +278,7 @@ def ShortCadence():
         axbh[j].get_xaxis().set_major_locator(MaxNLocator(4))
       axbh[0].set_xticklabels('')
       axbh[1].set_xticklabels('')
-      axbh[2].set_xlabel('Barycentric Julian Date − 2,457,700 [day]', fontsize = 12)
+      axbh[2].set_xlabel("BJD - 2,457,700 [day]", fontsize = 12)
       thires = np.linspace(t0 - 0.08, t0 + 0.08, 1000)
       axbh[0].plot(thires + BJDOFF, T1.flux(thires, planets = ['b']), ls = '-', color = 'orange')
       axbh[1].plot(thires + BJDOFF, T1.flux(thires, planets = ['h']), ls = '-', color = 'blue')
@@ -310,7 +310,7 @@ def ShortCadence():
       axflare.plot(thires + BJDOFF, flare_model(thires,*popt), 'r-', alpha = 0.3, ms = 3)
       axflare.set_xlim(-0.15 + t0 + BJDOFF, 0.15 + t0 + BJDOFF)
       axflare.set_ylim(0.97, 1.1)
-      axflare.set_xlabel('Barycentric Julian Date − 2,457,700 [day]', fontsize = 14)
+      axflare.set_xlabel("BJD - 2,457,700 [day]", fontsize = 12)
       axflare.annotate('h', xy = (t0 + BJDOFF, 1.01), xycoords = 'data', ha = 'center', va = 'center', fontsize = 18, color = 'r')
       axflare.set_ylabel('Normalized Flux', fontsize = 14)
       
