@@ -7,6 +7,8 @@
   <a href="https://doi.org/10.5281/zenodo.376863"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.376863.svg"/></a>
 </p>
 
+<b>[3/15/2017]:</b> *Several bugs were recently fixed. Please pull again and upgrade your everest installation.*
+
 ## Introduction
 The planet-hosting star [TRAPPIST-1](https://en.wikipedia.org/wiki/TRAPPIST-1) was recently [observed](https://archive.stsci.edu/k2/trappist1/) with the [*K2* spacecraft](https://keplerscience.arc.nasa.gov/). Recently, [seven transiting planets](http://www.nature.com/nature/journal/v542/n7642/full/nature21360.html) were found around this star, but the outermost of these, TRAPPIST-1 **h**, was only seen in transit once, so its period was not known. While the *K2* observations had the potential to find more transits of **h** (thereby constraining its orbit), there are two major issues difficulting this measurement. First, since TRAPPIST-1 is an [ultracool dwarf](https://en.wikipedia.org/wiki/Ultra-cool_dwarf), it is extremely dim in the band at which *K2* observes. Second, because of its inability to point precisly, *K2* introduces substantial [instrumental noise](https://keplerscience.arc.nasa.gov/k2-observing.html#campaigns) into its light curves, swamping out the small transit signals.
 
@@ -16,7 +18,7 @@ In a paper recently submitted to [Nature Astronomy](https://arxiv.org/abs/1703.0
 This repository contains the <b>EVEREST</b> long cadence light curve ([FITS](output/nPLDTrappist.fits) | [PDF](output/nPLDTrappist.pdf)), segments of the short cadence light curve in the vicinity of each transit of planet <b>h</b> ([FITS1](output/nPLDTrappisth1.sc.fits) | [PDF1](output/nPLDTrappisth1.sc.pdf) | [FITS2](output/nPLDTrappisth2.sc.fits) | [PDF2](output/nPLDTrappisth2.sc.pdf) | [FITS3](output/nPLDTrappisth3.sc.fits) | [PDF3](output/nPLDTrappisth3.sc.pdf) | [FITS4](output/nPLDTrappisth4.sc.fits) | [PDF4](output/nPLDTrappisth4.sc.pdf)), and all of the code necessary to reproduce and analyze these light curves and plot the figures in our [Nature Astronomy paper](#). If you're interested in using this code to reproduce our results or adapt it to your needs, read on!
 
 ## Installation
-In order to run the scripts and interact with the light curves in this repository, you will need to install the latest <b>EVEREST</b> release (>=2.0.7):
+In order to run the scripts and interact with the light curves in this repository, you will need to install the latest <b>EVEREST</b> release (>=2.0.8):
 <pre><code>pip install everest-pipeline</code></pre>
 If you alread have <b>EVEREST</b> installed, please upgrade it:
 <pre><code>pip install everest-pipeline --upgrade</code></pre>
