@@ -45,9 +45,6 @@ def PlotFolded(save = False):
   # There's a single (very) high outlier during one of the 
   # transits of h; let's mask it
   star.badmask = np.append(star.badmask, [3373])
-
-  # Compute the joint model to get depths
-  star.compute_joint()
   
   # Set up the plot
   fig = pl.figure(figsize = (5,8))
@@ -65,7 +62,21 @@ def PlotFolded(save = False):
   # Plot each planet
   planets = ['b', 'c', 'd', 'e', 'f', 'g', 'h']
   for planet, ax in zip(planets, axes):
-    star.plot_transit_model(fold = planet, ax = ax, show = False) 
+    
+    # HACK: There's an outlier SOMEWHERE that's messing up the transit fit for `b`...
+    if planet == 'b':
+      inds = []
+      for t in T1.times['b']:
+        inds += list(np.where((np.abs(star.time - t) > 0.05) & (np.abs(star.time - t) < 0.1))[0])
+      tmp = np.array(star.badmask)
+      star.badmask = np.append(star.badmask, inds)
+      star.compute_joint()
+      star.plot_transit_model(fold = planet, ax = ax, show = False) 
+      star.badmask = tmp
+      star.compute_joint()
+    else:
+      star.plot_transit_model(fold = planet, ax = ax, show = False)
+    
     ax.set_ylabel("")
     ax.set_xlabel("") 
     ax.set_title(planet, fontweight = 'bold')
