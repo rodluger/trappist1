@@ -608,21 +608,23 @@ def ShortCadenceLightcurves():
     # Get SC data
     data = GetData(TRAPPIST_EPIC, short_cadence = True)
   
+    # Apply a mask to get the light curve in the vicinity of the transit
+    # For transit 3, let's get more of a baseline so we can fit out that flare!
+    if i == 3:
+      mask = np.where(np.abs(data.time - t0) < 1.)[0]
+    elif i == 1:
+      mask = np.where((data.time > 2941.3) & (data.time < 2942.5))[0]
+    else:
+      mask = np.where(np.abs(data.time - t0) < 0.75)[0]
+  
     # Get neighbors
     neighbors_data = []
     for star in SHORTCAD_NEIGHBORS:
       ndata = GetData(star, short_cadence = True)
-    
-      # We are only de-trending in the vicinity of each
-      # transit of h. For transit 3, let's get more of
-      # a baseline so we can fit out that flare!
-      if i == 3:
-        mask = np.where(np.abs(ndata.time - t0) < 1.)[0]
-      elif i == 1:
-        mask = np.where((ndata.time > 2941.3) & (ndata.time < 2942.5))[0]
-      else:
-        mask = np.where(np.abs(ndata.time - t0) < 0.75)[0]
-    
+      
+      # Paranoia check
+      assert len(ndata.time) == len(data.time), "Time array mismatch!"
+      
       # This is a bit hacky -- let's delete the data outside
       # the window we're de-trending in. This means we need
       # to re-caculate the indices of the outliers.
@@ -638,12 +640,6 @@ def ShortCadenceLightcurves():
       neighbors_data.append(ndata)
   
     # Now, do the same thing for the TRAPPIST-1 data
-    if i == 3:
-      mask = np.where(np.abs(data.time - t0) < 1.)[0]
-    elif i == 1:
-      mask = np.where((data.time > 2941.3) & (data.time < 2942.5))[0]
-    else:
-      mask = np.where(np.abs(data.time - t0) < 0.75)[0]
     data.time = data.time[mask]
     data.fpix = data.fpix[mask]
     data.fpix_err = data.fpix_err[mask]
@@ -657,8 +653,7 @@ def ShortCadenceLightcurves():
     # Mask transits of all the planets with a generous
     # 3.5x padding around them so we don't overfit anything
     transitmask = T1.transit_inds(data.time, pad = 3.5)
-    
-    
+     
     if i == 1:
       transitmask = T1.transit_inds(data.time, pad = 3.5, planets = ['b', 'c', 'd', 'e', 'f', 'g'])
       transitmask = np.append(transitmask, np.where((data.time >= 2942.11) & (data.time < 2942.3))[0])

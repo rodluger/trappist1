@@ -27,7 +27,7 @@ import logging
 log = logging.getLogger(__name__)
 BJDOFF = 2454833 - 2457700
 
-def PlotFolded():
+def PlotFolded(save = False):
   '''
   Plots the long cadence light curve of TRAPPIST-1 folded
   on the transits of each of the seven planets.
@@ -73,9 +73,13 @@ def PlotFolded():
       tick.set_fontsize(8)
   
   # Show!
-  pl.show()
+  if save:
+    fig.savefig(os.path.join(TRAPPIST_OUT, 'folded.png'), bbox_inches = 'tight', dpi = 300)
+    pl.close()
+  else:
+    pl.show()
 
-def DeltaChisq():
+def DeltaChisq(save = False):
   '''
   Plot the delta chi-squared as a function of time for planet `h`. This 
   is Figure 5 in the paper.
@@ -126,10 +130,13 @@ def DeltaChisq():
   ax[1].annotate('FLARE', xy = (2980.3 + BJDOFF, -5), ha = 'center', va = 'center', color = 'k', bbox=dict(fc='w',ec='w',alpha=0.75), alpha = 0.5)
   ax[1].annotate('FLARE', xy = (2973.68 + BJDOFF, -5), ha = 'center', va = 'center', color = 'k', bbox=dict(fc='w',ec='w',alpha=0.75), alpha = 0.5)
   
-  # Show
-  pl.show()
+  if save:
+    fig.savefig(os.path.join(TRAPPIST_OUT, 'deltachisq.png'), bbox_inches = 'tight', dpi = 300)
+    pl.close()
+  else:
+    pl.show()
    
-def PowerSpectrum():
+def PowerSpectrum(save = False):
   '''
   Plot the delta chi-squared power spectrum as a function of period for planet `h`. This 
   is Figure 6 in the paper.
@@ -216,10 +223,13 @@ def PowerSpectrum():
                  textcoords = 'data', arrowprops=dict(arrowstyle="->",color='r'),
                  ha = 'center', va = 'center', color = 'r')
   
-  # Show
-  pl.show()
+  if save:
+    fig.savefig(os.path.join(TRAPPIST_OUT, 'powerspec.png'), bbox_inches = 'tight', dpi = 300)
+    pl.close()
+  else:
+    pl.show()
 
-def ShortCadence():
+def ShortCadence(save = False):
   '''
   Plot the short cadence data and diagnostics plots for
   TRAPPIST-1h. These are figures 2, 3, and 4 in the paper.
@@ -438,7 +448,14 @@ def ShortCadence():
   axr.set_xlabel('Time from transit center (days)', fontsize = 14)
   
   # Show all plots
-  pl.show()
+  if save:
+    fig.savefig(os.path.join(TRAPPIST_OUT, 'sc_transits.png'), bbox_inches = 'tight', dpi = 300)
+    figfold.savefig(os.path.join(TRAPPIST_OUT, 'sc_folded.png'), bbox_inches = 'tight', dpi = 300)
+    figbh.savefig(os.path.join(TRAPPIST_OUT, 'transit_3.png'), bbox_inches = 'tight', dpi = 300)
+    figflare.savefig(os.path.join(TRAPPIST_OUT, 'transit_4.png'), bbox_inches = 'tight', dpi = 300)
+    pl.close()
+  else:
+    pl.show()
 
 if __name__ == '__main__':
   
@@ -454,13 +471,13 @@ if __name__ == '__main__':
       shutil.copy(os.path.join(TRAPPIST_OUT, file), TRAPPIST_EVEREST_DAT)
   
   # Folded light curve for all planets
-  PlotFolded()
+  PlotFolded(save = True)
   
   # Figures 2, 3, 4
-  ShortCadence()
+  ShortCadence(save = True)
   
   # Figure 5
-  DeltaChisq()
+  DeltaChisq(save = True)
   
   # Figure 6
-  PowerSpectrum()
+  PowerSpectrum(save = True)
