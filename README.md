@@ -4,7 +4,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/1703.04166"><img src="https://img.shields.io/badge/arXiv-1703.04166-blue.svg?style=flat"/></a>
   <a href="https://raw.githubusercontent.com/rodluger/trappist1/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg"/></a>
-  <a href="https://doi.org/10.5281/zenodo.376863"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.376863.svg"/></a>
+  <a href="https://doi.org/10.5281/zenodo.437876"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.437876.svg"/></a>
 </p>
 
 <b>[3/15/2017]:</b> *Several bugs were recently fixed. Please pull again and upgrade your everest installation.*<br>*Big thanks to Hans Martin Schwengeler.*
@@ -29,7 +29,7 @@ Next, you have a choice: you can either **(1)** use the pre-existing FITS files 
 This one is easy. If you simply run [trappist1.py](trappist1.py), it will automatically copy the FITS files over to the **EVEREST** directory for TRAPPIST-1 and run the scripts to generate all the figures. You can then peek at the code and tailor it to your needs. 
 
 ### 2. De-trend from Scratch
-This one is a little more involved. First, you'll have to download the raw TPF data for TRAPPIST-1 and its neighbors from [this Zenodo link](https://doi.org/10.5281/zenodo.376863) and place them in the [data folder](data/). Next, comment out [these lines in trappist1.py](https://github.com/rodluger/trappist1/blob/166c9d880761fcba0fa7083dd6b31126bcc99020/trappist1.py#L452-L454) to force the code to generate new FITS files. As the TPFs are ingested into **EVEREST**, you will be asked to manually select apertures for each target. Do this by clicking and dragging along the pixels you want in the aperture. Please note that the targets move around a lot over the course of the campaign (slide the bar at the bottom to see the postage stamp at different points in time). You'll have to define an aperture that's large enough to contain virtually all of the flux from the target, but not *too* large as to compromise the background subtraction routine. For saturated stars, add a little padding at the top and bottom of saturated columns just in case.
+This one is a little more involved. First, you'll have to download the raw TPF data for TRAPPIST-1 and its neighbors from [this Zenodo link](https://doi.org/10.5281/zenodo.437876) and place them in the [data folder](data/). Next, comment out [these lines in trappist1.py](https://github.com/rodluger/trappist1/blob/166c9d880761fcba0fa7083dd6b31126bcc99020/trappist1.py#L452-L454) to force the code to generate new FITS files. As the TPFs are ingested into **EVEREST**, you will be asked to manually select apertures for each target. Do this by clicking and dragging along the pixels you want in the aperture. Please note that the targets move around a lot over the course of the campaign (slide the bar at the bottom to see the postage stamp at different points in time). You'll have to define an aperture that's large enough to contain virtually all of the flux from the target, but not *too* large as to compromise the background subtraction routine. For saturated stars, add a little padding at the top and bottom of saturated columns just in case.
 
 ## The Code
 The methods in [trappist1.py](trappist1.py) allow users to plot and interact with the <b>EVEREST</b> light curve for TRAPPIST-1, as well as to reproduce several of the figures in the <a href="#">paper</a>.
