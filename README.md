@@ -7,6 +7,8 @@
   <a href="https://doi.org/10.5281/zenodo.437876"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.437876.svg"/></a>
 </p>
 
+
+<b>[3/23/2017]:</b> *We noticed that the pseudo-TPFs we used in the original version of the code reported timestamps in geocentric time, NOT BJD. This led to an offset of about 10 minutes, which affected some of our short cadence timing analyses. This issue has since been corrected, and all light curves and plots have been updated to reflect the correct BJD. The Zenodo link to the raw dataset has also been updated.*
 <b>[3/15/2017]:</b> *Several bugs were recently fixed. Please pull again and upgrade your everest installation.*<br>*Big thanks to Hans Martin Schwengeler.*
 
 ## Introduction
