@@ -357,33 +357,37 @@ def ShortCadence(save = False):
       sc_flux_bin[np.where(sc_time_bin - t0 > 0.161)] = np.nan
   
     # Plot!
-    ax[i].plot(sc_time - t0, sc_flux, 'k.', alpha = 0.3, ms = 3)
-    ax[i].plot(sc_time_bin - t0, sc_flux_bin, color = 'orange', ls = '-', alpha = 1)
-    ax[i].plot(lc_time - t0, lc_flux, 'r-', alpha = 0.75)
+    ax[i].plot(sc_time + BJDOFF, sc_flux, 'k.', alpha = 0.3, ms = 3)
+    ax[i].plot(sc_time_bin + BJDOFF, sc_flux_bin, color = 'orange', ls = '-', alpha = 1)
+    ax[i].plot(lc_time + BJDOFF, lc_flux, 'r-', alpha = 0.75)
     
     # Lims and labels
     ax[i].set_ylim(0.97, 1.03)
-    ax[i].set_xlim(-0.275, 0.275)
+    ax[i].set_xlim(t0 + BJDOFF - 0.275, t0 + BJDOFF + 0.275)
     if i == 4 or i == 5:
-      ax[i].set_xlabel('Time from transit center (days)', fontsize = 13)
+      ax[i].set_xlabel('BJD - 2,457,700 [day]', fontsize = 13)
     if i == 0 or i == 2 or i == 4:
       ax[i].set_ylabel('Normalized flux', fontsize = 13)
     ax[i].annotate(label, xy = (0.05, 0.95), xycoords = 'axes fraction', ha = 'left', va = 'top', fontsize = 10, fontweight = 'bold')
 
-  # Mark the other visible planets
-  ax[0].annotate('b', xy = (-0.25, 1.01), color = 'r', ha = 'center')
-  ax[2].annotate('c', xy = (-0.11, 1.01), color = 'r', ha = 'center')
-  ax[2].annotate('b,h', xy = (0, 1.01), color = 'r', ha = 'center')
-  ax[3].annotate('e', xy = (0.155, 1.01), color = 'r', ha = 'center')
-  ax[4].annotate('c', xy = (-0.1, 1.01), color = 'r', ha = 'center')
-  ax[5].annotate('e', xy = (0.155, 1.01), color = 'r', ha = 'center')
-
-  # Mark our guesses
-  ax[0].annotate('h', xy = (0, 1.01), color = 'r', ha = 'center')
-  ax[1].annotate('h', xy = (0., 1.01), color = 'r', ha = 'center')
-  ax[3].annotate('h', xy = (0., 1.01), color = 'r', ha = 'center')
-  ax[4].annotate('h', xy = (0., 1.01), color = 'r', ha = 'center')
-  ax[5].annotate('h', xy = (0., 1.01), color = 'r', ha = 'center')
+    # Mark all visible planets
+    if i == 0:
+      ax[i].annotate('h', xy = (t0 + BJDOFF, 1.01), color = 'r', ha = 'center')
+      ax[i].annotate('b', xy = (t0 + BJDOFF - 0.25, 1.01), color = 'r', ha = 'center')
+    elif i == 1:
+      ax[i].annotate('h', xy = (t0 + BJDOFF, 1.01), color = 'r', ha = 'center')
+    elif i == 2:
+      ax[i].annotate('c', xy = (t0 + BJDOFF - 0.11, 1.01), color = 'r', ha = 'center')
+      ax[i].annotate('b,h', xy = (t0 + BJDOFF, 1.01), color = 'r', ha = 'center')
+    elif i == 3:
+      ax[i].annotate('e', xy = (t0 + BJDOFF + 0.155, 1.01), color = 'r', ha = 'center')
+      ax[i].annotate('h', xy = (t0 + BJDOFF, 1.01), color = 'r', ha = 'center')
+    elif i == 4:
+      ax[i].annotate('c', xy = (t0 + BJDOFF - 0.1, 1.01), color = 'r', ha = 'center')
+      ax[i].annotate('h', xy = (t0 + BJDOFF, 1.01), color = 'r', ha = 'center')
+    elif i == 5:
+      ax[i].annotate('e', xy = (t0 + BJDOFF + 0.155, 1.01), color = 'r', ha = 'center')
+      ax[i].annotate('h', xy = (t0 + BJDOFF, 1.01), color = 'r', ha = 'center')
 
   # Plot folded
   figfold = pl.figure(figsize = (7,5))
@@ -471,13 +475,13 @@ if __name__ == '__main__':
       shutil.copy(os.path.join(TRAPPIST_OUT, file), TRAPPIST_EVEREST_DAT)
   
   # Folded light curve for all planets
-  PlotFolded(save = True)
+  #PlotFolded(save = True)
   
   # Figures 2, 3, 4
   ShortCadence(save = True)
   
   # Figure 5
-  DeltaChisq(save = True)
+  #DeltaChisq(save = True)
   
   # Figure 6
-  PowerSpectrum(save = True)
+  #PowerSpectrum(save = True)
