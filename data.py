@@ -503,9 +503,9 @@ def GetData(EPIC, clobber_data = False, norm = 1.0, short_cadence = False, **kwa
   data.campaign = 12
   data.season = 12
   data.cadn = cadn
-  data.time = time
-  data.fpix = fpix
-  data.fpix_err = np.sqrt(np.abs(fpix) * norm) / norm
+  data.time = np.array(time, dtype = 'float64')
+  data.fpix = np.array(fpix, dtype = 'float64')
+  data.fpix_err = np.sqrt(np.abs(data.fpix) * norm) / norm
   data.nanmask = nanmask
   data.badmask = badmask
   data.aperture = aperture
