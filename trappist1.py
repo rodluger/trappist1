@@ -475,13 +475,13 @@ if __name__ == '__main__':
       shutil.copy(os.path.join(TRAPPIST_OUT, file), TRAPPIST_EVEREST_DAT)
   
   # Folded light curve for all planets
-  #PlotFolded(save = True)
+  PlotFolded(save = True)
   
   # Figures 2, 3, 4
   ShortCadence(save = True)
   
   # Figure 5
-  #DeltaChisq(save = True)
+  DeltaChisq(save = True)
   
   # Figure 6
-  #PowerSpectrum(save = True)
+  PowerSpectrum(save = True)
