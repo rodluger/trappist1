@@ -67,7 +67,7 @@ def PlotFolded(save = False):
     if planet == 'b':
       inds = []
       for t in T1.times['b']:
-        inds += list(np.where((np.abs(star.time - t) > 0.05) & (np.abs(star.time - t) < 0.1))[0])
+        inds += list(np.where(((star.time - t) > 0.05) & ((star.time - t) < 0.06))[0])
       tmp = np.array(star.badmask)
       star.badmask = np.append(star.badmask, inds)
       star.compute_joint()
@@ -76,7 +76,7 @@ def PlotFolded(save = False):
       star.compute_joint()
     else:
       star.plot_transit_model(fold = planet, ax = ax, show = False)
-    
+
     ax.set_ylabel("")
     ax.set_xlabel("") 
     ax.set_title(planet, fontweight = 'bold')
