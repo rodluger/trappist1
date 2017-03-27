@@ -15,8 +15,9 @@ is on the order of 4e-4, which for our purposes is negligible.
 '''
 
 from __future__ import division, print_function, absolute_import #, unicode_literals
-from data import Everest, TRAPPIST_EPIC
+from data import Everest, TRAPPIST_EPIC, TRAPPIST_OUT
 import numpy as np
+import os
 import matplotlib.pyplot as pl
 from scipy.special import erf
 from scipy.optimize import fmin
@@ -54,7 +55,7 @@ def GetSigma():
   
   '''
   
-  star = Everest('/Users/rodrigo/src/trappist1/output/nPLDTrappist.fits', TRAPPIST_EPIC)
+  star = Everest(os.path.join(TRAPPIST_OUT, 'nPLDTrappist.fits'), TRAPPIST_EPIC)
   fpix = star.fpix.reshape(-1, 6, 6).swapaxes(1,2)
   guess = [3., 3., 1e4, 1e2, 0.5]
   n = 0
@@ -68,18 +69,23 @@ def GetSigma():
     x[n], y[n], a[n], b[n], sigma[n] = fmin(ChiSq, guess, args = (fpix[n * 10],), disp = 0)
   return np.nanmedian(sigma)
 
-# Aperture center
-x, y = np.meshgrid(np.arange(3 - 10, 3 + 10),np.arange(3 - 10, 3 + 10))
-image = Erf2D(x, y, 3, 3, 1, 0, 0.45)
-aperture = np.where((x > 0) & (x < 6) & (y > 0) & (y < 6))
-influx = np.sum(image[aperture])
-outflux = np.sum(image) - influx
-print("Flux loss @ aperture center: %.2e" % (outflux / (influx + outflux)))
+if __name__ == '__main__':
+  
+  # Get the PSF standard deviation empirically
+  sigma = GetSigma()
+  
+  # Aperture center
+  x, y = np.meshgrid(np.arange(3 - 10, 3 + 10),np.arange(3 - 10, 3 + 10))
+  image = Erf2D(x, y, 3, 3, 1, 0, sigma)
+  aperture = np.where((x > 0) & (x < 6) & (y > 0) & (y < 6))
+  influx = np.sum(image[aperture])
+  outflux = np.sum(image) - influx
+  print("Flux loss @ aperture center: %.2e" % (outflux / (influx + outflux)))
 
-# Maximum deviation from aperture center
-x, y = np.meshgrid(np.arange(3 - 10, 3 + 10),np.arange(3 - 10, 3 + 10))
-image = Erf2D(x, y, 2.5, 3.5, 1, 0, 0.45)
-aperture = np.where((x > 0) & (x < 6) & (y > 0) & (y < 6))
-influx = np.sum(image[aperture])
-outflux = np.sum(image) - influx
-print("Flux loss @ maximum deviation: %.2e" % (outflux / (influx + outflux)))
+  # Maximum deviation from aperture center
+  x, y = np.meshgrid(np.arange(3 - 10, 3 + 10),np.arange(3 - 10, 3 + 10))
+  image = Erf2D(x, y, 2.5, 3.5, 1, 0, sigma)
+  aperture = np.where((x > 0) & (x < 6) & (y > 0) & (y < 6))
+  influx = np.sum(image[aperture])
+  outflux = np.sum(image) - influx
+  print("Flux loss @ maximum deviation: %.2e" % (outflux / (influx + outflux)))
